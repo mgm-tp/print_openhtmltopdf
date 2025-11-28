@@ -1,8 +1,11 @@
-OPEN HTML TO PDF XML/CSS RENDERER LICENSE COMMENTS
-Copyright (C) 2016 Patrick Wright and others
-https://openhtmltopdf.com
+PRINT OPEN HTML TO PDF COMMENTS
+This software is derived from the open-source project OPEN HTML TO PDF,
+Copyright (C) 2016 Patrick Wright and others, and distributed
+under the terms of the LICENSE-LGPL-2.1.txt or LICENSE-LGPL-3.txt. This software includes
+modifications by mgm technology partners GmbH. All original rights
+remain with the respective copyright holders.
 
-All source code to OPEN HTML TO PDF itself is licensed under the GNU Lesser General
+All source code to PRINT OPEN HTML TO PDF itself is licensed under the GNU Lesser General
 Public License (LGPL); you can redistribute it and/or modify it under the terms
 of the GNU Lesser General Public License as published by the Free Software
 Foundation, either version 2.1 of the License, or (at your option) any later version.
@@ -11,7 +14,7 @@ on the website of the Free Software Foundation, at
 http://www.gnu.org/copyleft/lesser.html, and in our distributions under
 LICENSE-LGPL-2.1.txt or LICENSE-LGPL-3.txt.
 
-OPEN HTML TO PDF relies on several other free or open source projects in 
+This software relies on several other free or open source projects in 
 order to build and run. All currently used libraries are thought to have licenses compatible with the LGPL.
 However, there are several jars under the obsolete-archive folder that are no longer used 
 and their licenses are out of the scope of this document. Please check the license before
