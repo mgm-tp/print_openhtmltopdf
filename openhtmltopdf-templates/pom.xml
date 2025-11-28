@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.openhtmltopdf</groupId>
-    <artifactId>openhtmltopdf-parent</artifactId>
+    <groupId>com.mgmtp.a12.print</groupId>
+    <artifactId>print-openhtmltopdf-parent</artifactId>
     <version>1.0.11-SNAPSHOT</version>
   </parent>
 
-  <artifactId>openhtmltopdf-templates</artifactId>
+  <artifactId>print-openhtmltopdf-templates</artifactId>
 
   <packaging>jar</packaging>
 
@@ -25,13 +25,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-pdfbox</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-pdfbox</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-svg-support</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-svg-support</artifactId>
       <version>${project.version}</version>
     </dependency>
 

@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.openhtmltopdf</groupId>
-    <artifactId>openhtmltopdf-parent</artifactId>
+    <groupId>com.mgmtp.a12.print</groupId>
+    <artifactId>print-openhtmltopdf-parent</artifactId>
     <version>1.0.11-SNAPSHOT</version>
   </parent>
 
-  <artifactId>openhtmltopdf-slf4j</artifactId>
+  <artifactId>print-openhtmltopdf-slf4j</artifactId>
 
   <packaging>jar</packaging>
 
@@ -22,17 +22,6 @@
       <url>http://www.gnu.org/licenses/lgpl.html</url>
     </license>
   </licenses>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
 
   <profiles>
     <profile>
@@ -79,14 +68,14 @@
     </dependency>
 
     <dependency>
-        <groupId>com.openhtmltopdf</groupId>
-        <artifactId>openhtmltopdf-core</artifactId>
+        <groupId>com.mgmtp.a12.print</groupId>
+        <artifactId>print-openhtmltopdf-core</artifactId>
         <version>${project.version}</version>
     </dependency>
 
     <dependency>
-        <groupId>com.openhtmltopdf</groupId>
-        <artifactId>openhtmltopdf-pdfbox</artifactId>
+        <groupId>com.mgmtp.a12.print</groupId>
+        <artifactId>print-openhtmltopdf-pdfbox</artifactId>
         <version>${project.version}</version>
         <scope>test</scope>
     </dependency>

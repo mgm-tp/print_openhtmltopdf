@@ -3,15 +3,15 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.openhtmltopdf</groupId>
-  <artifactId>openhtmltopdf-parent</artifactId>
+  <groupId>com.mgmtp.a12.print</groupId>
+  <artifactId>print-openhtmltopdf-parent</artifactId>
   <version>1.0.11-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
   <name>Openhtmltopdf</name>
   <description>Open-HTML-to-PDF is a HTML and CSS renderer written in Java.  It supports Java2D and PDF output. Open-HTML-to-PDF is a fork of Flying-saucer with additional features.</description>
-  <url>https://github.com/danfickle/openhtmltopdf</url>
+  <url>https://github.com/mgm-tp/print_openhtmltopdf</url>
 
   <licenses>
     <license>
@@ -36,22 +36,11 @@
   </modules>
 
   <scm>
-    <connection>scm:git:git://github.com/danfickle/openhtmltopdf.git</connection>
-    <developerConnection>scm:git:https://github.com/danfickle/openhtmltopdf.git</developerConnection>
-    <url>git://github.com/danfickle/openhtmltopdf.git</url>
+    <connection>scm:git:git@github.com:mgm-tp/print_openhtmltopdf.git</connection>
+    <developerConnection>scm:git:https://github.com/mgm-tp/print_openhtmltopdf.git</developerConnection>
+    <url>git@github.com:mgm-tp/print_openhtmltopdf.git</url>
     <tag>HEAD</tag>
   </scm>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
 
   <developers>
     <developer>
@@ -68,6 +57,11 @@
       <id>peter.brant</id>
       <name>Peter Brant</name>
       <email>peter.brant@gmail.com</email>
+    </developer>
+    <developer>
+      <id>mgm-rwagner</id>
+      <name>Rudi Wagner</name>
+      <email>rudi.wagner@mgm-tp.com</email>
     </developer>
   </developers>
 

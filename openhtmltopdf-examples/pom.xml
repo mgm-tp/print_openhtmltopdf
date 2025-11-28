@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.openhtmltopdf</groupId>
-    <artifactId>openhtmltopdf-parent</artifactId>
+    <groupId>com.mgmtp.a12.print</groupId>
+    <artifactId>print-openhtmltopdf-parent</artifactId>
     <version>1.0.11-SNAPSHOT</version>
   </parent>
 
-  <artifactId>openhtmltopdf-examples</artifactId>
+  <artifactId>print-openhtmltopdf-examples</artifactId>
 
   <packaging>jar</packaging>
 
@@ -30,23 +30,23 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-core</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-pdfbox</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-pdfbox</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-rtl-support</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-rtl-support</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-svg-support</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-svg-support</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -60,23 +60,23 @@
       <version>${open.rhino.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-mathml-support</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-mathml-support</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-java2d</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-java2d</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-objects</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-objects</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.openhtmltopdf</groupId>
-      <artifactId>openhtmltopdf-latex-support</artifactId>
+      <groupId>com.mgmtp.a12.print</groupId>
+      <artifactId>print-openhtmltopdf-latex-support</artifactId>
       <version>${project.version}</version>
     </dependency>
 

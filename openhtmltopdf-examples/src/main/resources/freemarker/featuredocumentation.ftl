@@ -204,13 +204,13 @@ To display math you can use MathML and latex. To do so you need the dependencies
 
 [@pomCode]
 <dependency>
-	<groupId>com.openhtmltopdf</groupId>
-	<artifactId>openhtmltopdf-mathml-support</artifactId>
+	<groupId>com.mgmtp.a12.print</groupId>
+	<artifactId>print-openhtmltopdf-mathml-support</artifactId>
 	<version>...</version>
 </dependency>
 <dependency>
-	<groupId>com.openhtmltopdf</groupId>
-	<artifactId>openhtmltopdf-latex-support</artifactId>
+	<groupId>com.mgmtp.a12.print</groupId>
+	<artifactId>print-openhtmltopdf-latex-support</artifactId>
 	<version>...</version>
 </dependency>
 [/@pomCode]
@@ -268,8 +268,8 @@ and so on. To use them include the openhtmltopdf-objects dependency in your pom:
 
 [@pomCode]
 <dependency>
-	<groupId>com.openhtmltopdf</groupId>
-	<artifactId>openhtmltopdf-objects</artifactId>
+	<groupId>com.mgmtp.a12.print</groupId>
+	<artifactId>print-openhtmltopdf-objects</artifactId>
 	<version>...</version>
 </dependency>
 [/@pomCode]
