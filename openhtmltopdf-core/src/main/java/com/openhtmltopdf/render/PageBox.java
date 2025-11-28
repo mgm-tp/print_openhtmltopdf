@@ -1,6 +1,6 @@
 /*
  * {{{ header & license
- * Copyright (c) 2005 Wisconsin Court System
+ * Copyright (c) 2025 mgm technology partners GmbH
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -24,6 +24,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import org.w3c.dom.Element;
@@ -479,7 +480,15 @@ public class PageBox {
 
                     table.getLayer().propagateCurrentTransformationMatrix(c);
                     SimplePainter painter = new SimplePainter(p.x, p.y);
-                    Object token = c.getOutputDevice().startStructure(StructureType.RUNNING, table);
+
+                    // add header and footer tagging
+                    // Object token = c.getOutputDevice().startStructure(StructureType.RUNNING, table);
+                    boolean isTop = Arrays.stream(container._area.getMarginBoxNames())
+                        .anyMatch(mbn -> mbn.toString().contains("top"));
+                    StructureType type = isTop ? StructureType.RUNNING_HEADER : StructureType.RUNNING_FOOTER;
+                    Object token = c.getOutputDevice().startStructure(type, table);
+                    // change end
+
                     painter.paintLayer(c, table.getLayer());
                     c.getOutputDevice().endStructure(token);
 

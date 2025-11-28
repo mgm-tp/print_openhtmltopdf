@@ -1,3 +1,22 @@
+/*
+ * {{{ header & license
+ * Copyright (c) 2025 mgm technology partners GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation; either version 2.1
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * }}}
+ */
 package com.openhtmltopdf.render.simplepainter;
 
 import java.awt.Point;
@@ -6,6 +25,7 @@ import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.Map;
 
+import com.openhtmltopdf.extend.StructureType;
 import com.openhtmltopdf.layout.CollapsedBorderSide;
 import com.openhtmltopdf.layout.InlinePaintable;
 import com.openhtmltopdf.layout.Layer;
@@ -114,6 +134,11 @@ public class SimplePainter {
                 setClip(c, setClip);
             } else {
                 BlockBox box = (BlockBox) dli;
+
+                // add header and footer tagging
+                Object outerToken = c.getOutputDevice().startStructure(StructureType.BLOCK, box);
+                Object innerToken = c.getOutputDevice().startStructure(StructureType.BACKGROUND, box);
+                // change end
                 
                 debugOnly("painting bg", box);
                 box.paintBackground(c);
@@ -132,6 +157,11 @@ public class SimplePainter {
                         }
                     }
                 }
+
+                // add header and footer tagging
+                c.getOutputDevice().endStructure(innerToken);
+                c.getOutputDevice().endStructure(outerToken);
+                // change end
             }
         }
         
@@ -167,7 +197,16 @@ public class SimplePainter {
             } else {
                 InlinePaintable paintable = (InlinePaintable) dli;
                 debugOnly("Painting Inline", paintable);
+
+                // add header and footer tagging
+                Object token = c.getOutputDevice().startStructure(StructureType.INLINE, (Box) dli);
+                // change end
+
                 paintable.paintInline(c);
+
+                // add header and footer tagging
+                c.getOutputDevice().endStructure(token);
+                // change end
             }
         }
         
@@ -184,8 +223,12 @@ public class SimplePainter {
         if (contentBounds.x != loc.x || contentBounds.y != loc.y) {
             replaced.getReplacedElement().setLocation(contentBounds.x, contentBounds.y);
         }
-        
+
+        // add header and footer tagging
+        Object outerToken = c.getOutputDevice().startStructure(StructureType.REPLACED, replaced);
         c.getOutputDevice().paintReplacedElement(c, replaced);
+        c.getOutputDevice().endStructure(outerToken);
+        // change end
     }
 
     private void paintReplacedElements(RenderingContext c, List<DisplayListItem> replaceds) {

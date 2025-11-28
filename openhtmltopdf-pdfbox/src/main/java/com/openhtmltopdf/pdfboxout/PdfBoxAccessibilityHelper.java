@@ -1,12 +1,27 @@
+/*
+ * {{{ header & license
+ * Copyright (c) 2025 mgm technology partners GmbH
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation; either version 2.1
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * }}}
+ */
 package com.openhtmltopdf.pdfboxout;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 
@@ -92,6 +107,12 @@ public class PdfBoxAccessibilityHelper {
     private static class PageItems {
         final List<GenericContentItem> _contentItems = new ArrayList<>();
         final List<AnnotationWithStructureParent> _pageAnnotations = new ArrayList<>();
+
+        // add header and footer tagging
+        final List<AbstractTreeItem> _headers = new ArrayList<>();
+        final List<AbstractTreeItem> _footers = new ArrayList<>();
+        int bodyIndexForHeaders = 0;
+        // change end
     }
     
     /**
@@ -187,9 +208,10 @@ public class PdfBoxAccessibilityHelper {
 
         private String chooseTag(Box box) {
             if (box != null) {
-                if (box.getLayer() != null) {
+                // add header and footer tagging (avoid to tag all elements as sect)
+                /*if (box.getLayer() != null) {
                     return StandardStructureTypes.SECT;
-                } else if (box.isAnonymous()) {
+                } else*/ if (box.isAnonymous()) {
                     return guessBoxTag(box);
                 } else if (box.getElement() != null) {
                     String htmlTag = box.getElement().getTagName();
@@ -742,6 +764,10 @@ public class PdfBoxAccessibilityHelper {
             COSDictionary attributeDict = new COSDictionary();
             attributeDict.setItem(COSName.BBOX, child.boundingBox);
             attributeDict.setItem(COSName.O, COSName.getPDFName("Layout"));
+
+            // this tag is needed to prevent an error in the PCA checker for image elements tagging
+            attributeDict.setItem(COSName.getPDFName("Placement"), COSName.getPDFName("Block"));
+
             setAttributeDictionary(attributeDict);
 
             child.parentElem.appendKid(child.elem);
@@ -1097,8 +1123,13 @@ public class PdfBoxAccessibilityHelper {
     private static final Token NESTED_RUNNING = new Token();
     
     public Token startStructure(StructureType type, Box box) {
-            // Check for items that appear on every page (fixed, running, page margins).    
-            if (type == StructureType.RUNNING) {
+            // add header and footer tagging
+
+            StructureType orig = type;
+            boolean running = false;
+            // Check for items that appear on every page (fixed, running, page margins).
+
+            /*if (type == StructureType.RUNNING) {
                 // Only mark artifact for first level of running element (we might have
                 // nested fixed elements).
                 if (_runningLevel == 0) {
@@ -1107,13 +1138,21 @@ public class PdfBoxAccessibilityHelper {
                     _cs.beginMarkedContent(COSName.ARTIFACT, run);
                     return STARTING_RUNNING;
                 }
-                
+
                 _runningLevel++;
                 return NESTED_RUNNING;
             } else if (_runningLevel > 0) {
                 // We are in a running artifact.
                 return INSIDE_RUNNING;
+            }*/
+
+            if (type == StructureType.RUNNING_HEADER ||
+                    type == StructureType.RUNNING_FOOTER) {
+                running = true;
+                type = StructureType.BLOCK;
             }
+
+            // change end
         
             switch (type) {
             case LAYER:
@@ -1159,13 +1198,24 @@ public class PdfBoxAccessibilityHelper {
             }
             case REPLACED: {
                 AbstractStructualElement struct = (AbstractStructualElement) box.getAccessibilityObject();
-                if (struct == null) {
+                if (struct == null && !running /* add header and footer tagging */ ) {
                     struct = createStructureItem(type, box);
                     setupStructureElement(struct, box);
+                    // add header and footer tagging
+                } else if (running) {
+                    struct = createStructureItem(type, box);
+
+                    if (orig == StructureType.RUNNING_HEADER) {
+                        this._pageItems._headers.add(struct);
+                    } else {
+                        this._pageItems._footers.add(struct);
+                    }
+                    box.setAccessiblityObject(struct);
                 }
-                
+                // change end
+
                 FigureContentItem current = createFigureContentStructureItem(type, box);
-                
+
                 if (current != null) {
                     _cs.beginMarkedContent(COSName.getPDFName(StandardStructureTypes.Figure), current.dict);
                     return TRUE_TOKEN;
@@ -1208,11 +1258,28 @@ public class PdfBoxAccessibilityHelper {
         this._pageHeight = pageHeight;
         this._transform = transform;
         this._pageItems = new PageItems();
+
+        // add header and footer tagging
+        if (_rootBox != null && _rootBox.getChild(0).getAccessibilityObject() != null) {
+            GenericStructualElement body = (GenericStructualElement) _rootBox.getChild(0).getAccessibilityObject();
+            _pageItems.bodyIndexForHeaders = body.children.size();
+        }
+        // change end
+
         this._pageItemsMap.put(page, this._pageItems);
     }
     
     public void endPage() {
-        
+        // add header and footer tagging
+        GenericStructualElement body = (GenericStructualElement) this._rootBox.getChild(0).getAccessibilityObject();
+
+        Collections.reverse(_pageItems._headers);
+        _pageItems._headers.forEach(hdr -> body.children.add(_pageItems.bodyIndexForHeaders, hdr));
+        _pageItems._headers.forEach(runner -> runner.parent = body);
+
+        _pageItems._footers.forEach(body::addChild);
+        _pageItems._footers.forEach(runner -> runner.parent = body);
+        // change end
     }
     
     private static class AnnotationWithStructureParent {
