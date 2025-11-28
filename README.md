@@ -66,9 +66,12 @@ from ````/openhtmltopdf-examples/src/main/java/com/openhtmltopdf/testcases/Testc
 
 ## CHANGELOG
 
-### NEWER VERSIONS: SEE COMMIT LOG
+### 0.2.2
 
-+ https://github.com/mgm-tp/print_openhtmltopdf/commits/main/
++ Fix: NPE in COSArray.add with big HTML document in PDF A_1_A mode and Arial font. The fix is suggested by a Pull Request from [CedricMtta](https://github.com/danfickle/openhtmltopdf/commit/b88d40a5aba6b85e76be843acd071844a011fb7c)
++ Allow to tag header and footer elements as suggested from [danfickle](https://github.com/danfickle/openhtmltopdf/commit/a068c4034fdcba92b99f740dc39f7c7e37ac590e)
++ Update groupIds & artifactIds to reflect new project naming
++ Update README to reflect new project naming & fork definition
 
 ### OLDER RELEASES
 

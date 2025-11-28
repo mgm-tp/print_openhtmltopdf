@@ -5,7 +5,7 @@
 
   <groupId>com.mgmtp.a12.print</groupId>
   <artifactId>print-openhtmltopdf-parent</artifactId>
-  <version>1.0.11-SNAPSHOT</version>
+  <version>0.2.2</version>
 
   <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
     <connection>scm:git:git@github.com:mgm-tp/print_openhtmltopdf.git</connection>
     <developerConnection>scm:git:https://github.com/mgm-tp/print_openhtmltopdf.git</developerConnection>
     <url>git@github.com:mgm-tp/print_openhtmltopdf.git</url>
-    <tag>HEAD</tag>
+    <tag>print-openhtmltopdf-parent-0.2.2</tag>
   </scm>
 
   <developers>
